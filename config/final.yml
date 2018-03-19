@@ -1,6 +1,7 @@
 ---
 blobstore:
-  provider: s3
+  provider: local
   options:
-    bucket_name: nfs-boshrelease
+    blobstore_path: /tmp/bosh-blob-store
 final_name: nfs
+

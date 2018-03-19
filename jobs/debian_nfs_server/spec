@@ -4,6 +4,7 @@ name: debian_nfs_server
 description: "The NFS Server provides a storage server that can be used with the Cloud Controllers to store uploaded application source code and compiled application assets."
 
 templates:
+  bin/pre-start.erb: bin/pre-start
   rpc_nfsd_ctl: bin/rpc_nfsd_ctl
   rpc_mountd_ctl: bin/rpc_mountd_ctl
   exports.erb: config/exports

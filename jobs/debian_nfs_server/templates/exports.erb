@@ -5,4 +5,4 @@
 
    allow_from_entries = properties.nfs_server.allow_from_entries.compact.uniq
 %>
-/var/vcap/store <%= allow_from_entries.map { |allow_from| "#{allow_from}(#{permissions})" }.join(' ') %>
+/var/vcap/store/nfs-shared <%= allow_from_entries.map { |allow_from| "#{allow_from}(#{permissions})" }.join(' ') %>
