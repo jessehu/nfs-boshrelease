@@ -1,4 +1,11 @@
 #!/bin/bash
 
+apt-get update
+apt-get install -y nfs-kernel-server
+
+mkdir -p /var/vcap/store/nfs-shared
+chown <%= properties.nfs_server.owner %> /var/vcap/store/nfs-shared
+cp -f /var/vcap/jobs/debian_nfs_server/config/exports /etc/exports
+
 /var/vcap/jobs/debian_nfs_server/bin/rpc_nfsd_ctl start
 /var/vcap/jobs/debian_nfs_server/bin/rpc_mountd_ctl start

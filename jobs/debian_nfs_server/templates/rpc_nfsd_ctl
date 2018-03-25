@@ -5,13 +5,6 @@ source /var/vcap/packages/common/utils.sh
 case $1 in
 
   start)
-    dpkg --unpack -E /var/vcap/packages/debian_nfs_server/nfs-kernel-server_1.2.8-9ubuntu12_amd64.deb
-    rm -rf /etc/init.d/nfs-kernel-server
-    mkdir -p /var/vcap/store/nfs-shared
-    chown nobody:nogroup /var/vcap/store/nfs-shared
-
-    cp -f /var/vcap/jobs/debian_nfs_server/config/exports /etc/exports
-
     modprobe -q nfsd
 
     for f in /var/lib/nfs/etab  \
@@ -25,7 +18,8 @@ case $1 in
     fi
 
     /usr/sbin/exportfs -r
-    /usr/sbin/rpc.nfsd 8
+    service nfs-kernel-server restart
+    #/usr/sbin/rpc.nfsd 8
 
     #cp -f /var/vcap/jobs/debian_nfs_server/config/idmapd.conf /etc/idmapd.conf
     #/etc/init.d/idmapd restart
